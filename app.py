@@ -1,2 +1,2 @@
-# app.py
+# web application
 print("Hello, World!")
