@@ -17,10 +17,12 @@ jobs:
       uses: actions/setup-docker@v2
 
     - name: Build Docker Image
-      run: docker build -t your-image-name:latest
+      run: |
+        docker build -t hello-world
+        docker run hello-world
 
     - name: Login to AWS ECR
-            run: aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
+      run: aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
 
 
     - name: Build and push Docker image
@@ -29,5 +31,5 @@ jobs:
         docker push <your-ecr-repository-url>:latest
 
     - name: Logout from AWS ECR
-      run: docker logout <your-account-id>.dkr.ecr.<your-region>.amazonaws.com      
+        run: docker logout <your-account-id>.dkr.ecr.<your-region>.amazonaws.com      
 
